@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luigi Digital — Gaming Store</title>
+  <meta name="description" content="Tu tienda gaming de confianza. Controles, Game Pass, accesorios y más." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+</head>
+<body>
+
+<!-- PARTICLE BACKGROUND -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+══════════════════════════════════════════ -->
+<nav class="navbar" role="navigation">
+  <a href="#" class="nav-logo" aria-label="Luigi Digital Home">
+    <div class="logo-icon">🎮</div>
+    LUIGI<span>DIGITAL</span>
+  </a>
+
+  <ul class="nav-links" role="list">
+    <li><a href="#catalog-section">Catálogo</a></li>
+    <li><a href="#gamepass-section">Game Pass</a></li>
+    <li><a href="#limited-section">Edición Limitada</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <div class="nav-search" role="search">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="nav-search-input" type="search" placeholder="Buscar productos..." aria-label="Buscar productos" />
+    </div>
+    <button class="cart-btn" id="cart-btn" aria-label="Abrir carrito">
+      🛒 Carrito
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     HERO
+══════════════════════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg-gradient"></div>
+  <div class="hero-scanlines"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      Tienda Gaming Online
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line-1">Tu setup</span>
+      <span class="line-2">Gaming Perfecto</span>
+      <span class="line-3">// Accesorios · Controles · Suscripciones</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      Controles originales, bases multifuncionales, Game Pass y mucho más.
+      Todo lo que necesitas para llevar tu experiencia gaming al siguiente nivel.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-primary" id="hero-cta">
+        <span>🎮 Ver catálogo</span>
+      </button>
+      <a href="https://wa.me/573000000000" class="btn-ghost" target="_blank" rel="noopener">
+        💬 WhatsApp
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num" data-target="21" data-suffix="+">0+</div>
+        <div class="stat-label">Productos</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="7" data-suffix="">0</div>
+        <div class="stat-label">Categorías</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="100" data-suffix="%">0%</div>
+        <div class="stat-label">Calidad</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" data-target="24" data-suffix="/7">0/7</div>
+        <div class="stat-label">Soporte</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FEATURED BANNER — GAME PASS
+══════════════════════════════════════════ -->
+<section id="gamepass-section" class="featured-banner reveal" aria-label="Suscripciones">
+  <div class="banner-inner">
+    <div class="banner-text">
+      <h2>Game Pass & <span>Suscripciones</span> 🔑</h2>
+      <p>Xbox Game Pass, PS Plus y Nintendo Switch Online. Accede a cientos de juegos desde hoy.</p>
+    </div>
+    <div class="banner-actions">
+      <button class="btn-primary" onclick="document.getElementById('categories-scroll').querySelector('[data-cat=gamepass]').click();document.getElementById('catalog-section').scrollIntoView({behavior:'smooth'})">
+        <span>Ver planes</span>
+      </button>
+    </div>
+    <div class="banner-emoji" aria-hidden="true">🎮</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     CATEGORIES STRIP
+══════════════════════════════════════════ -->
+<div class="categories-strip" id="catalog-section" role="navigation" aria-label="Categorías">
+  <div id="categories-scroll" class="categories-scroll" role="list"></div>
+</div>
+
+<!-- Search results feedback -->
+<div id="search-results-bar" class="search-results-bar" style="display:none" aria-live="polite"></div>
+
+<!-- ══════════════════════════════════════════
+     PRODUCTS
+══════════════════════════════════════════ -->
+<main class="section" aria-label="Catálogo de productos">
+  <div class="section-header reveal">
+    <div>
+      <div class="section-tag">Catálogo</div>
+      <h2 class="section-title">Todos los productos</h2>
+    </div>
+    <button class="view-all" onclick="document.getElementById('categories-scroll').querySelector('[data-cat=all]').click()">
+      Ver todos →
+    </button>
+  </div>
+  <div class="section-divider"></div>
+
+  <div class="products-grid" id="products-grid" role="list" aria-label="Productos">
+    <!-- Injected by JS -->
+  </div>
+</main>
+
+<!-- ══════════════════════════════════════════
+     LIMITED EDITION BANNER
+══════════════════════════════════════════ -->
+<section id="limited-section" class="featured-banner reveal" aria-label="Edición limitada">
+  <div class="banner-inner" style="background:linear-gradient(135deg,var(--bg-card) 0%,rgba(255,45,120,0.12) 50%,var(--bg-card) 100%);border-color:rgba(255,45,120,0.35)">
+    <div class="banner-text">
+      <h2>Edición <span style="color:var(--neon-pink)">Limitada ⭐</span></h2>
+      <p>Controles especiales y coleccionables únicos. DualSense Fortnite, ediciones especiales y más.</p>
+    </div>
+    <div class="banner-actions">
+      <button class="btn-ghost" onclick="document.getElementById('categories-scroll').querySelector('[data-cat=edicion]').click();document.getElementById('catalog-section').scrollIntoView({behavior:'smooth'})" style="border-color:rgba(255,45,120,0.5)">
+        Ver ediciones →
+      </button>
+    </div>
+    <div class="banner-emoji" aria-hidden="true">⭐</div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div>
+    <div class="footer-logo">LUIGI<span>DIGITAL</span></div>
+    <div class="footer-text" style="margin-top:4px">Tu tienda gaming de confianza</div>
+  </div>
+  <div class="footer-text">© 2025 Luigi Digital. Todos los derechos reservados.</div>
+  <nav class="footer-links" aria-label="Footer links">
+    <a href="#">Política de privacidad</a>
+    <a href="#">Términos</a>
+    <a href="https://wa.me/573000000000" target="_blank" rel="noopener">WhatsApp</a>
+  </nav>
+</footer>
+
+<!-- ══════════════════════════════════════════
+     CART SIDEBAR
+══════════════════════════════════════════ -->
+<div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+<aside class="cart-sidebar" id="cart-sidebar" role="dialog" aria-label="Carrito de compras" aria-modal="true">
+  <div class="cart-header">
+    <div>
+      <h3>🛒 Tu carrito</h3>
+      <div class="cart-items-count" id="cart-items-count">0 artículos</div>
+    </div>
+    <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">✕</button>
+  </div>
+
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <p>Tu carrito está vacío</p>
+      <p style="font-size:0.8rem">¡Agrega tus productos favoritos!</p>
+    </div>
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-summary">
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Envío</span>
+        <span style="color:var(--neon-green)">A coordinar</span>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <span id="cart-total-val">$0.00</span>
+      </div>
+    </div>
+
+    <button class="btn-checkout" id="btn-checkout" onclick="alert('¡Pedido listo! Contáctanos por WhatsApp para coordinar el pago y envío. 💚')">
+      Hacer pedido por WhatsApp 💬
+    </button>
+    <button class="btn-clear-cart" id="clear-cart">
+      Vaciar carrito
+    </button>
+  </div>
+</aside>
+
+<!-- ══════════════════════════════════════════
+     PRODUCT MODAL
+══════════════════════════════════════════ -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Detalle de producto">
+  <div class="modal-box" id="modal-content-inner">
+    <!-- Injected by JS -->
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     TOAST CONTAINER
+══════════════════════════════════════════ -->
+<div id="toast-container" role="status" aria-live="polite"></div>
+
+<!-- SCRIPTS -->
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
