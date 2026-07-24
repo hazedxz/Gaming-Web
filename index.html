@@ -1,243 +1,228 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Luigi Digital — Gaming Store</title>
-  <meta name="description" content="Tu tienda gaming de confianza. Controles, Game Pass, accesorios y más." />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon de Luigi Digital -->
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+    <!-- css bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <title>Luigi Digital | Tienda Multiconsolas</title>
 </head>
-<body>
 
-<!-- PARTICLE BACKGROUND -->
-<canvas id="particles-canvas"></canvas>
+<body class="bg-light">
+    <!-- CONTENEDOR DINÁMICO DEL HEADER -->
+    <!-- Aquí se inyectará el contenido de components/header.html -->
+    <div id="header-container"></div>
 
-<!-- ══════════════════════════════════════════
-     NAVBAR
-══════════════════════════════════════════ -->
-<nav class="navbar" role="navigation">
-  <a href="#" class="nav-logo" aria-label="Luigi Digital Home">
-    <div class="logo-icon">🎮</div>
-    LUIGI<span>DIGITAL</span>
-  </a>
+    <main>
+        <!-- SECCIÓN HERO (Replicando la interactividad del video) -->
+        <section id="hero-carousel" class="carousel slide carousel-fade pt-5 mt-5" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- Slide 1 (Equivalente al banner de GTA VI) -->
+                <div class="carousel-item active">
+                    <img src="img/jumbo-bg.png" class="d-block w-100" alt="Juego Destacado 1" style="height: 600px; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block text-start" style="bottom: 15%; left: 10%;">
+                        <img src="img/returnal-hero-banner-logo.png" alt="Logo Juego 1" class="mb-4" style="width: 40%;">
+                        <h2 class="display-5 fw-bold text-white">Experimenta la evolución</h2>
+                        <p class="lead text-white">Reserva ahora los mejores títulos de la temporada.</p>
+                        <a href="#" class="button btn-orange mt-3">Reserva ahora</a>
+                    </div>
+                </div>
+                <!-- Slide 2 (Equivalente al banner de Assassin's Creed) -->
+                <div class="carousel-item">
+                    <img src="img/it-takes-two-hero-banner-desktop.jpg" class="d-block w-100" alt="Juego Destacado 2" style="height: 600px; object-fit: cover;">
+                    <div class="carousel-caption d-none d-md-block text-start" style="bottom: 15%; left: 10%;">
+                        <img src="img/it-takes-two-logo.png" alt="Logo Juego 2" class="mb-4" style="width: 40%;">
+                        <h2 class="display-5 fw-bold text-white">Vuelve a izar la bandera</h2>
+                        <p class="lead text-white">La aventura pirata definitiva te espera.</p>
+                        <a href="#" class="button btn-orange mt-3">Comprar ahora</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controles de miniaturas del carrusel -->
+            <div class="container-md mt-4 pb-4">
+                <div class="row justify-content-center carousel-indicators position-static m-0">
+                    <div class="col-4 col-md-2 p-1">
+                        <img src="img/returnal-listing-thumb-01-ps5.jpg" data-bs-target="#hero-carousel" data-bs-slide-to="0" class="active img-fluid rounded border border-2 border-light shadow-sm" alt="Thumbnail 1" style="cursor: pointer;">
+                    </div>
+                    <div class="col-4 col-md-2 p-1">
+                        <img src="img/ratchet-and-clank-rift-apart-keyart.jpg" data-bs-target="#hero-carousel" data-bs-slide-to="1" class="img-fluid rounded opacity-75 hover-opacity-100" alt="Thumbnail 2" style="cursor: pointer;">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <ul class="nav-links" role="list">
-    <li><a href="#catalog-section">Catálogo</a></li>
-    <li><a href="#gamepass-section">Game Pass</a></li>
-    <li><a href="#limited-section">Edición Limitada</a></li>
-  </ul>
+        <!-- SECCIÓN DE HARDWARE MULTIPLATAFORMA -->
+        <section class="d-flex justify-content-center mt-5 pt-5">
+            <div id="PLAY-NO-LIMIT" class="text-center">
+                <span class="text-primary fw-bold">LUIGI DIGITAL</span>
+                <h2 class="display-5 fw-bold">Descubre todas las consolas y accesorios</h2>
+                <span class="description-general">La mejor tecnología en videojuegos.</span>
+            </div>
+        </section>
+        
+        <section class="container-md">
+            <div class="row align-items-center">
+                <div class="PS5-description col-12 m-auto col-md-6">
+                    <h2 class="fw-bold">Equipos de Nueva Generación</h2>
+                    <span class="description-general">Juega con gráficos increíbles en PS5, Xbox Series X y Nintendo Switch.</span>
+                    <a href="#" class="button btn-blue">Más información</a>
+                    <a href="#" class="button btn-orange ms-2">Comprar ahora</a>
+                </div>
+                <div class="img-PS5 col-12 col-md-6 text-center">
+                    <img src="img/playstation-5-thumb.png" alt="Consola Destacada" class="img-fluid w-75">
+                </div>
+            </div>
+        </section>
 
-  <div class="nav-actions">
-    <div class="nav-search" role="search">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="nav-search-input" type="search" placeholder="Buscar productos..." aria-label="Buscar productos" />
-    </div>
-    <button class="cart-btn" id="cart-btn" aria-label="Abrir carrito">
-      🛒 Carrito
-      <span class="cart-count" id="cart-count">0</span>
-    </button>
-  </div>
-</nav>
+        <!-- Miniaturas de hardware interactivo -->
+        <section class="container-md mt-5">
+            <section id="ps5description-img-small" class="row row-cols-3 row-cols-md-5 justify-content-center border-bottom pb-4">
+                <div class="here-ps5 text-center border-primary border-bottom border-3">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <img src="img/playstation-5-thumb.png" alt="PS5" class="w-50 mb-2">
+                        <span class="d-none d-md-block fw-bold">PS5</span>
+                    </a>
+                </div>
+                <div class="text-center filter">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <img src="img/joypad-thumb.png" alt="Xbox" class="w-50 mb-2">
+                        <span class="d-none d-md-block fw-bold">Controles Xbox</span>
+                    </a>
+                </div>
+                <div class="text-center filter">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <img src="img/headset-thumb.png" alt="Switch" class="w-50 mb-2">
+                        <span class="d-none d-md-block fw-bold">Nintendo Switch</span>
+                    </a>
+                </div>
+                <div class="text-center filter">
+                    <a href="#" class="text-dark text-decoration-none">
+                        <img src="img/remote-thumb.png" alt="Accesorios" class="w-50 mb-2">
+                        <span class="d-none d-md-block fw-bold">Accesorios</span>
+                    </a>
+                </div>
+            </section>
+        </section>
 
-<!-- ══════════════════════════════════════════
-     HERO
-══════════════════════════════════════════ -->
-<section class="hero" aria-label="Hero">
-  <div class="hero-bg-gradient"></div>
-  <div class="hero-scanlines"></div>
+        <!-- SECCIÓN DE JUEGOS CON PESTAÑAS (Replicando video) -->
+        <section id="new-game" class="mt-5 py-5 bg-dark text-white">
+            <div class="container-md">
+                <div class="row gx-3 gy-4 new-game-div">
+                    <div class="col-12 text-center mb-4">
+                        <h2 class="display-6 fw-bold mb-4">Grandes juegos ya disponibles o que llegarán pronto</h2>
+                        <!-- Pestañas de navegación -->
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link text-white bg-secondary rounded-pill px-4 mx-2" href="#">Nuevos lanzamientos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light px-4 mx-2" href="#">Próximamente</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Grilla de juegos -->
+                    <div class="col-6 col-sm-4 col-lg-2 text-center">
+                        <a href="#" class="text-white text-decoration-none">
+                            <img src="img/tony-hawks-pro-skater-1-2-store-art.jpg" alt="Juego 1" class="img-fluid rounded mb-2">
+                            <span class="d-block small">Tony Hawk's Pro Skater</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2 text-center">
+                        <a href="#" class="text-white text-decoration-none">
+                            <img src="img/crash-bandicoot-4-its-about-time-store-art.jpg" alt="Juego 2" class="img-fluid rounded mb-2">
+                            <span class="d-block small">Crash Bandicoot 4</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2 text-center">
+                        <a href="#" class="text-white text-decoration-none">
+                            <img src="img/tony-hawks-pro-skater-1-2-store-art.jpg" alt="Juego 3" class="img-fluid rounded mb-2">
+                            <span class="d-block small">FIFA 24</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2 text-center">
+                        <a href="#" class="text-white text-decoration-none">
+                            <img src="img/crash-bandicoot-4-its-about-time-store-art.jpg" alt="Juego 4" class="img-fluid rounded mb-2">
+                            <span class="d-block small">Halo Infinite</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2 text-center">
+                        <a href="#" class="text-white text-decoration-none">
+                            <img src="img/tony-hawks-pro-skater-1-2-store-art.jpg" alt="Juego 5" class="img-fluid rounded mb-2">
+                            <span class="d-block small">Zelda TOTK</span>
+                        </a>
+                    </div>
+                    <div class="col-6 col-sm-4 col-lg-2 text-center">
+                        <a href="#" class="text-white text-decoration-none">
+                            <img src="img/crash-bandicoot-4-its-about-time-store-art.jpg" alt="Juego 6" class="img-fluid rounded mb-2">
+                            <span class="d-block small">Gears of War</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span class="dot"></span>
-      Tienda Gaming Online
-    </div>
+        <!-- SECCIÓN DE SUSCRIPCIONES (GamePass y PS Plus) -->
+        <section id="play-plus" class="py-5" style="background-color: #e5e7eb;">
+            <div class="container-md">
+                <div class="row align-items-center">
+                    <div class="col-12 col-md-6 mb-4 mb-md-0">
+                        <h3 class="display-6 fw-bold text-dark">GamePass & PlayStation Plus</h3>
+                        <span class="description-general d-block my-4">Mejora tu experiencia con acceso a multijugador online, juegos mensuales, descuentos exclusivos y mucho más para todas tus consolas.</span>
+                        <a class="button btn-blue text-white" href="#">Descubrir Suscripciones</a>
+                    </div>
+                    <div class="d-none d-md-block col-6 text-center">
+                        <img class="img-fluid rounded shadow-sm w-75" src="img/ps-plus-april-monthly-games-featured-image-block.png" alt="Suscripciones">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <h1 class="hero-title">
-      <span class="line-1">Tu setup</span>
-      <span class="line-2">Gaming Perfecto</span>
-      <span class="line-3">// Accesorios · Controles · Suscripciones</span>
-    </h1>
+    <!-- CONTENEDOR DINÁMICO DEL FOOTER -->
+    <!-- Aquí se inyectará el contenido de components/footer.html -->
+    <div id="footer-container"></div>
 
-    <p class="hero-subtitle">
-      Controles originales, bases multifuncionales, Game Pass y mucho más.
-      Todo lo que necesitas para llevar tu experiencia gaming al siguiente nivel.
-    </p>
+    <!-- JB bundle BS5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
-    <div class="hero-actions">
-      <button class="btn-primary" id="hero-cta">
-        <span>🎮 Ver catálogo</span>
-      </button>
-      <a href="https://wa.me/573000000000" class="btn-ghost" target="_blank" rel="noopener">
-        💬 WhatsApp
-      </a>
-    </div>
+    <!-- Script de Inyección de Componentes Globales -->
+    <script src="js/navbar.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Cargar Nav (Header) — initNavbar() se llama DESPUÉS del fetch
+            fetch('components/header.html')
+                .then(response => {
+                    if (!response.ok) throw new Error("Header no encontrado");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    initNavbar(); // ← aquí, cuando el DOM del header ya existe
+                })
+                .catch(error => console.log('Asegúrate de ejecutar esto en un servidor local (Live Server).', error));
 
-    <div class="hero-stats">
-      <div class="stat-item">
-        <div class="stat-num" data-target="21" data-suffix="+">0+</div>
-        <div class="stat-label">Productos</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-target="7" data-suffix="">0</div>
-        <div class="stat-label">Categorías</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-target="100" data-suffix="%">0%</div>
-        <div class="stat-label">Calidad</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num" data-target="24" data-suffix="/7">0/7</div>
-        <div class="stat-label">Soporte</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     FEATURED BANNER — GAME PASS
-══════════════════════════════════════════ -->
-<section id="gamepass-section" class="featured-banner reveal" aria-label="Suscripciones">
-  <div class="banner-inner">
-    <div class="banner-text">
-      <h2>Game Pass & <span>Suscripciones</span> 🔑</h2>
-      <p>Xbox Game Pass, PS Plus y Nintendo Switch Online. Accede a cientos de juegos desde hoy.</p>
-    </div>
-    <div class="banner-actions">
-      <button class="btn-primary" onclick="document.getElementById('categories-scroll').querySelector('[data-cat=gamepass]').click();document.getElementById('catalog-section').scrollIntoView({behavior:'smooth'})">
-        <span>Ver planes</span>
-      </button>
-    </div>
-    <div class="banner-emoji" aria-hidden="true">🎮</div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     CATEGORIES STRIP
-══════════════════════════════════════════ -->
-<div class="categories-strip" id="catalog-section" role="navigation" aria-label="Categorías">
-  <div id="categories-scroll" class="categories-scroll" role="list"></div>
-</div>
-
-<!-- Search results feedback -->
-<div id="search-results-bar" class="search-results-bar" style="display:none" aria-live="polite"></div>
-
-<!-- ══════════════════════════════════════════
-     PRODUCTS
-══════════════════════════════════════════ -->
-<main class="section" aria-label="Catálogo de productos">
-  <div class="section-header reveal">
-    <div>
-      <div class="section-tag">Catálogo</div>
-      <h2 class="section-title">Todos los productos</h2>
-    </div>
-    <button class="view-all" onclick="document.getElementById('categories-scroll').querySelector('[data-cat=all]').click()">
-      Ver todos →
-    </button>
-  </div>
-  <div class="section-divider"></div>
-
-  <div class="products-grid" id="products-grid" role="list" aria-label="Productos">
-    <!-- Injected by JS -->
-  </div>
-</main>
-
-<!-- ══════════════════════════════════════════
-     LIMITED EDITION BANNER
-══════════════════════════════════════════ -->
-<section id="limited-section" class="featured-banner reveal" aria-label="Edición limitada">
-  <div class="banner-inner" style="background:linear-gradient(135deg,var(--bg-card) 0%,rgba(255,45,120,0.12) 50%,var(--bg-card) 100%);border-color:rgba(255,45,120,0.35)">
-    <div class="banner-text">
-      <h2>Edición <span style="color:var(--neon-pink)">Limitada ⭐</span></h2>
-      <p>Controles especiales y coleccionables únicos. DualSense Fortnite, ediciones especiales y más.</p>
-    </div>
-    <div class="banner-actions">
-      <button class="btn-ghost" onclick="document.getElementById('categories-scroll').querySelector('[data-cat=edicion]').click();document.getElementById('catalog-section').scrollIntoView({behavior:'smooth'})" style="border-color:rgba(255,45,120,0.5)">
-        Ver ediciones →
-      </button>
-    </div>
-    <div class="banner-emoji" aria-hidden="true">⭐</div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════
-     FOOTER
-══════════════════════════════════════════ -->
-<footer class="footer" role="contentinfo">
-  <div>
-    <div class="footer-logo">LUIGI<span>DIGITAL</span></div>
-    <div class="footer-text" style="margin-top:4px">Tu tienda gaming de confianza</div>
-  </div>
-  <div class="footer-text">© 2025 Luigi Digital. Todos los derechos reservados.</div>
-  <nav class="footer-links" aria-label="Footer links">
-    <a href="#">Política de privacidad</a>
-    <a href="#">Términos</a>
-    <a href="https://wa.me/573000000000" target="_blank" rel="noopener">WhatsApp</a>
-  </nav>
-</footer>
-
-<!-- ══════════════════════════════════════════
-     CART SIDEBAR
-══════════════════════════════════════════ -->
-<div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
-<aside class="cart-sidebar" id="cart-sidebar" role="dialog" aria-label="Carrito de compras" aria-modal="true">
-  <div class="cart-header">
-    <div>
-      <h3>🛒 Tu carrito</h3>
-      <div class="cart-items-count" id="cart-items-count">0 artículos</div>
-    </div>
-    <button class="cart-close" id="cart-close" aria-label="Cerrar carrito">✕</button>
-  </div>
-
-  <div class="cart-body" id="cart-body">
-    <div class="cart-empty">
-      <div class="cart-empty-icon">🛒</div>
-      <p>Tu carrito está vacío</p>
-      <p style="font-size:0.8rem">¡Agrega tus productos favoritos!</p>
-    </div>
-  </div>
-
-  <div class="cart-footer">
-    <div class="cart-summary">
-      <div class="summary-row">
-        <span>Subtotal</span>
-        <span id="cart-subtotal">$0.00</span>
-      </div>
-      <div class="summary-row">
-        <span>Envío</span>
-        <span style="color:var(--neon-green)">A coordinar</span>
-      </div>
-      <div class="summary-row total">
-        <span>Total</span>
-        <span id="cart-total-val">$0.00</span>
-      </div>
-    </div>
-
-    <button class="btn-checkout" id="btn-checkout" onclick="alert('¡Pedido listo! Contáctanos por WhatsApp para coordinar el pago y envío. 💚')">
-      Hacer pedido por WhatsApp 💬
-    </button>
-    <button class="btn-clear-cart" id="clear-cart">
-      Vaciar carrito
-    </button>
-  </div>
-</aside>
-
-<!-- ══════════════════════════════════════════
-     PRODUCT MODAL
-══════════════════════════════════════════ -->
-<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Detalle de producto">
-  <div class="modal-box" id="modal-content-inner">
-    <!-- Injected by JS -->
-  </div>
-</div>
-
-<!-- ══════════════════════════════════════════
-     TOAST CONTAINER
-══════════════════════════════════════════ -->
-<div id="toast-container" role="status" aria-live="polite"></div>
-
-<!-- SCRIPTS -->
-<script type="module" src="js/main.js"></script>
-
+            // Cargar Footer
+            fetch('components/footer.html')
+                .then(response => {
+                    if (!response.ok) throw new Error("Footer no encontrado");
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => console.log('Asegúrate de ejecutar esto en un servidor local (Live Server).', error));
+        });
+    </script>
 </body>
 </html>

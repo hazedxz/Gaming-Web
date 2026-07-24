@@ -1,0 +1,303 @@
+/* ==========================================================================
+   LUIGI DIGITAL - SISTEMA DE ESTILOS GLOBALES & ANIMACIONES
+   ========================================================================== */
+
+:root {
+    /* Paleta de Colores */
+    --primary-blue: #0072ce;
+    --primary-blue-hover: #0056a3;
+    --accent-orange: #cd3d0f;
+    --accent-orange-hover: #e04a1b;
+    --dark-bg: #1f1f1f;
+    --dark-surface: #121212;
+    --light-bg: #f8f9fa;
+    --text-muted: #727272;
+    
+    /* Sombras & Brillos */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-glow-blue: 0 6px 20px rgba(0, 114, 206, 0.35);
+    --shadow-glow-orange: 0 6px 20px rgba(205, 61, 15, 0.35);
+
+    /* Tiempos de Transición */
+    --ease-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Reset & Tipografía */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: var(--light-bg);
+    overflow-x: hidden;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 35px;
+}
+
+a {
+    text-decoration: none;
+    transition: color var(--ease-fast);
+}
+
+.description-general {
+    color: var(--text-muted);
+    display: block;
+    margin: 30px 0;
+    font-size: 20px;
+}
+
+/* ==========================================================================
+   BOTONES INTERACTIVOS (ANIMADOS)
+   ========================================================================== */
+
+.button {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: var(--primary-blue);
+    border-radius: 30px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--ease-fast), background-color var(--ease-fast), box-shadow var(--ease-fast), border-color var(--ease-fast);
+    will-change: transform;
+}
+
+.button:hover {
+    background-color: #ffffff;
+    color: var(--primary-blue);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-blue {
+    background-color: var(--primary-blue);
+    color: #ffffff;
+}
+
+.btn-blue:hover {
+    background-color: var(--primary-blue-hover);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: var(--shadow-glow-blue);
+}   
+
+.btn-orange {
+    background-color: var(--accent-orange);
+    color: #ffffff;
+}
+
+.btn-orange:hover {
+    background-color: var(--accent-orange-hover);
+    border-color: #ffd700;
+    color: #ffffff;
+    box-shadow: var(--shadow-glow-orange);
+}
+
+#btn-black {
+    padding: 10px 24px;
+    color: #ffffff;
+    background-color: #363636;
+    border-radius: 20px;
+    transition: all var(--ease-fast);
+}
+
+#btn-black:hover {
+    color: #000000;
+    background-color: #adff2f;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   ENCTABEZADO & NAVEGACIÓN
+   ========================================================================== */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+    width: 100%;
+}
+
+nav {
+    min-height: 65px;
+    padding-left: 30px;
+    padding-right: 30px;
+    color: #000000;
+    background-color: #ffffff;
+    transition: box-shadow var(--ease-smooth);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000000;
+    font-weight: normal;
+    transition: color var(--ease-fast);
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--primary-blue);
+}
+
+/* Animación de apertura de Dropdowns */
+.dropdown-menu {
+    border: none;
+    display: none;
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    transition: opacity var(--ease-smooth), transform var(--ease-smooth);
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.dropdown-item {
+    transition: background-color var(--ease-fast), padding-left var(--ease-fast);
+}
+
+.dropdown-item:hover {
+    background-color: rgba(0, 114, 206, 0.08);
+    padding-left: 1.5rem;
+}
+
+/* ==========================================================================
+   HERO / CARRUSEL & JUMBOTRON
+   ========================================================================== */
+
+#hero-carousel .carousel-item {
+    transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease-in-out;
+}
+
+.carousel-indicators img {
+    transition: transform var(--ease-fast), opacity var(--ease-fast), border-color var(--ease-fast);
+}
+
+.carousel-indicators img:hover {
+    transform: translateY(-4px) scale(1.04);
+    opacity: 1 !important;
+}
+
+/* ==========================================================================
+   SECCIÓN HARDWARE & PRODUCTOS
+   ========================================================================== */
+
+#PLAY-NO-LIMIT {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#PLAY-NO-LIMIT span:first-child {
+    color: var(--primary-blue);
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Efecto suave para miniaturas de consolas */
+.filter {
+    filter: opacity(60%);
+    transition: filter var(--ease-smooth), transform var(--ease-smooth);
+    cursor: pointer;
+}
+
+.filter:hover {
+    filter: opacity(100%);
+    transform: translateY(-6px);
+}
+
+.here-ps5 {
+    border-bottom: 3px solid var(--primary-blue);
+    transition: transform var(--ease-smooth);
+}
+
+.here-ps5:hover {
+    transform: translateY(-4px);
+}
+
+/* ==========================================================================
+   GRILLA DE JUEGOS & PESTAÑAS (TRANSICIONES)
+   ========================================================================== */
+
+#new-game {
+    background-color: var(--dark-bg);
+    color: #ffffff;
+}
+
+#new-game img {
+    width: 100%;
+    border-radius: 16px;
+    transition: transform var(--ease-bounce), box-shadow var(--ease-smooth);
+    will-change: transform;
+}
+
+#new-game a:hover img {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+#new-game span {
+    color: #ffffff;
+    font-weight: bold;
+    transition: color var(--ease-fast);
+}
+
+#new-game a:hover span {
+    color: var(--primary-blue);
+}
+
+/* ==========================================================================
+   SECCIONES DE SUSCRIPCIONES
+   ========================================================================== */
+
+#play-plus {
+    background-color: #bebcbb;
+    min-height: 310px;
+    color: #333333;
+    transition: background-color var(--ease-smooth);
+}
+
+#play-now {
+    background-color: #161c3b;
+    min-height: 310px;
+    color: #ffffff;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+
+footer {
+    background-color: #0b0e14;
+    color: #ffffff;
+}
+
+footer a.hover-white {
+    transition: color var(--ease-fast), transform var(--ease-fast);
+    display: inline-block;
+}
+
+footer a.hover-white:hover {
+    color: #ffffff !important;
+    transform: translateX(4px);
+}
+
+/* Adaptación Responsive */
+@media screen and (max-width: 576px) {
+    #ps5description-img-small img {
+        width: 100%;
+    }
+    
+    .button {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+}

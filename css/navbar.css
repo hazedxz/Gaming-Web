@@ -1,0 +1,727 @@
+/* ==========================================================================
+   LUIGI DIGITAL — navbar.css
+   Sistema de navegación: topbar, nav shrink, dropdowns, búsqueda, burger
+   ========================================================================== */
+
+/* ──────────────────────────────────────────
+   VARIABLES LOCALES
+────────────────────────────────────────── */
+:root {
+    --nav-height: 64px;
+    --nav-height-scrolled: 52px;
+    --nav-bg: #ffffff;
+    --nav-border: rgba(0,0,0,0.07);
+    --topbar-h: 30px;
+    --blue: #003791;
+    --blue-mid: #0070D1;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* ──────────────────────────────────────────
+   RESET DE MARGIN PARA COMPENSAR HEADER FIJO
+────────────────────────────────────────── */
+body {
+    padding-top: calc(var(--topbar-h) + var(--nav-height));
+    transition: padding-top 0.35s var(--ease-out);
+}
+body.is-scrolled-body {
+    padding-top: calc(var(--nav-height-scrolled));
+}
+
+/* ──────────────────────────────────────────
+   HEADER WRAPPER
+────────────────────────────────────────── */
+#site-header {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    z-index: 2000;
+}
+
+/* ──────────────────────────────────────────
+   TOP BAR
+────────────────────────────────────────── */
+.topbar-strip {
+    background: #0b0e14;
+    height: var(--topbar-h);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 24px;
+    overflow: hidden;
+    transition: height 0.35s var(--ease-out), opacity 0.25s ease;
+}
+.topbar-text {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+}
+
+/* Scroll: ocultar topbar */
+#site-header.is-scrolled .topbar-strip {
+    height: 0;
+    opacity: 0;
+}
+
+/* ──────────────────────────────────────────
+   NAV BASE
+────────────────────────────────────────── */
+.ld-nav {
+    background: var(--nav-bg);
+    height: var(--nav-height);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: none;
+    transition:
+        height 0.35s var(--ease-out),
+        box-shadow 0.35s ease;
+}
+
+#site-header.is-scrolled .ld-nav {
+    height: var(--nav-height-scrolled);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+
+.ld-nav__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+/* ──────────────────────────────────────────
+   BRAND / LOGO
+────────────────────────────────────────── */
+.ld-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+    margin-right: 32px;
+}
+
+.ld-brand__icon {
+    background: linear-gradient(135deg, #003791 0%, #0070D1 60%, #00AAFF 100%);
+    border-radius: 10px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,112,209,0.4);
+    flex-shrink: 0;
+    transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease;
+}
+.ld-brand__icon img {
+    filter: brightness(0) invert(1);
+}
+.ld-brand:hover .ld-brand__icon {
+    transform: scale(1.08);
+    box-shadow: 0 4px 18px rgba(0,112,209,0.55);
+}
+
+.ld-brand__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1;
+}
+.ld-brand__name {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-transform: uppercase;
+    transition: color 0.2s;
+}
+.ld-brand__sub {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 8.5px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    color: #aaa;
+    text-transform: uppercase;
+}
+
+/* Shrink brand */
+#site-header.is-scrolled .ld-brand__icon {
+    width: 30px;
+    height: 30px;
+}
+#site-header.is-scrolled .ld-brand__icon img {
+    width: 18px;
+    height: 18px;
+}
+
+/* ──────────────────────────────────────────
+   NAV MENU WRAPPER
+────────────────────────────────────────── */
+.ld-nav__menu {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 0;
+}
+
+.ld-nav__list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+/* ──────────────────────────────────────────
+   NAV LINKS
+────────────────────────────────────────── */
+.ld-nav__item {
+    position: static; /* usamos posición relativa al nav, no al item */
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+}
+#site-header.is-scrolled .ld-nav__item {
+    height: var(--nav-height-scrolled);
+}
+
+.ld-nav__link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 14px;
+    height: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-decoration: none;
+    white-space: nowrap;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+/* Línea animada abajo */
+.ld-nav__link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s var(--ease-out);
+    border-radius: 2px;
+}
+
+.ld-nav__item:hover .ld-nav__link,
+.ld-nav__item.is-open .ld-nav__link {
+    color: var(--blue);
+}
+.ld-nav__item:hover .ld-nav__link::after,
+.ld-nav__item.is-open .ld-nav__link::after {
+    transform: scaleX(1);
+}
+
+/* Chevron */
+.ld-chevron {
+    width: 10px;
+    height: 6px;
+    stroke: currentColor;
+    transition: transform 0.3s var(--ease-out);
+    flex-shrink: 0;
+}
+.ld-nav__item.is-open .ld-chevron {
+    transform: rotate(180deg);
+}
+
+/* ──────────────────────────────────────────
+   MEGA DROPDOWN
+────────────────────────────────────────── */
+.ld-dropdown {
+    position: fixed;
+    top: calc(var(--topbar-h) + var(--nav-height));
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    border-top: 2px solid var(--blue);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+    z-index: 1999;
+
+    /* Animación */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition:
+        opacity 0.28s var(--ease-out),
+        transform 0.28s var(--ease-out);
+}
+
+#site-header.is-scrolled .ld-dropdown {
+    top: var(--nav-height-scrolled);
+}
+
+.ld-nav__item.is-open .ld-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.ld-dropdown__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    display: flex;
+    gap: 48px;
+}
+
+.ld-dropdown__col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 180px;
+}
+
+.ld-dropdown__label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ld-dropdown__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #222;
+    text-decoration: none;
+    transition:
+        background 0.18s ease,
+        color 0.18s ease,
+        transform 0.2s var(--ease-out);
+}
+.ld-dropdown__item:hover {
+    background: rgba(0, 55, 145, 0.06);
+    color: var(--blue);
+    transform: translateX(4px);
+}
+
+.ld-dropdown__icon {
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.ld-dropdown__item--highlight {
+    color: #107c10;
+    font-weight: 700;
+}
+.ld-dropdown__item--highlight:hover {
+    background: rgba(16,124,16,0.07);
+    color: #107c10;
+}
+
+/* ── Game Pass — verde Xbox ── */
+.ld-item--gamepass {
+    color: #107c10;
+    font-weight: 600;
+}
+.ld-item--gamepass:hover {
+    background: rgba(16, 124, 16, 0.07) !important;
+    color: #0d6b0d !important;
+    transform: translateX(4px);
+}
+
+/* ── PS Plus — dorado ── */
+.ld-item--psplus {
+    color: #a07810;
+    font-weight: 600;
+}
+.ld-item--psplus:hover {
+    background: rgba(180, 140, 20, 0.08) !important;
+    color: #8a6608 !important;
+    transform: translateX(4px);
+}
+
+/* Animación stagger en los items */
+.ld-nav__item.is-open .ld-dropdown__item {
+    animation: itemReveal 0.3s var(--ease-out) both;
+}
+.ld-nav__item.is-open .ld-dropdown__item:nth-child(1) { animation-delay: 0.05s; }
+.ld-nav__item.is-open .ld-dropdown__item:nth-child(2) { animation-delay: 0.10s; }
+.ld-nav__item.is-open .ld-dropdown__item:nth-child(3) { animation-delay: 0.15s; }
+.ld-nav__item.is-open .ld-dropdown__item:nth-child(4) { animation-delay: 0.20s; }
+
+@keyframes itemReveal {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ──────────────────────────────────────────
+   BACKDROP
+────────────────────────────────────────── */
+.ld-backdrop {
+    position: fixed;
+    inset: 0;
+    top: calc(var(--topbar-h) + var(--nav-height));
+    background: rgba(0,0,0,0.25);
+    z-index: 1998;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+.ld-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+#site-header.is-scrolled ~ .ld-backdrop {
+    top: var(--nav-height-scrolled);
+}
+
+/* ──────────────────────────────────────────
+   BUSCADOR EXPANDIBLE
+────────────────────────────────────────── */
+/* ── BUSCADOR HOVER-EXPAND ── */
+.ld-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    /* El hover en el wrapper activa la expansión */
+}
+
+/* Pill contenedor: empieza como círculo y se expande */
+.ld-search__pill {
+    display: flex;
+    align-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 30px;
+    border: 1.5px solid transparent;
+    background: transparent;
+    overflow: hidden;
+    cursor: text;
+    transition:
+        width 0.42s var(--ease-out),
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+    will-change: width;
+}
+
+/* Hover o focus-within: expand */
+.ld-search:hover .ld-search__pill,
+.ld-search__pill:focus-within {
+    width: 260px;
+    border-color: var(--blue);
+    background: #fff;
+    box-shadow: 0 4px 22px rgba(0, 55, 145, 0.14);
+}
+
+/* Ícono lupa dentro del pill */
+.ld-search__icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    border-radius: 50%;
+    transition: color 0.2s ease, transform 0.3s var(--ease-out), background 0.2s;
+    pointer-events: none;
+}
+.ld-search__icon svg {
+    width: 19px;
+    height: 19px;
+    stroke-width: 2;
+    transition: transform 0.35s var(--ease-out);
+}
+
+/* En hover: ícono se vuelve azul y se desplaza levemente */
+.ld-search:hover .ld-search__icon,
+.ld-search__pill:focus-within .ld-search__icon {
+    color: var(--blue);
+}
+.ld-search:hover .ld-search__icon svg,
+.ld-search__pill:focus-within .ld-search__icon svg {
+    transform: scale(0.88);
+}
+
+/* Input oculto al inicio */
+.ld-search__input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 0 12px 0 0;
+    font-size: 13.5px;
+    background: transparent;
+    color: #1a1a1a;
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition:
+        opacity 0.25s ease 0.1s,
+        width 0s;
+    white-space: nowrap;
+}
+.ld-search__input::placeholder {
+    color: #bbb;
+    font-weight: 400;
+}
+
+/* Input visible al expandir */
+.ld-search:hover .ld-search__input,
+.ld-search__pill:focus-within .ld-search__input {
+    width: auto;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Botón X para limpiar — aparece si hay texto (manejado por JS) */
+.ld-search__clear {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0 10px 0 0;
+    color: #bbb;
+    flex-shrink: 0;
+    transition: color 0.2s, transform 0.2s;
+}
+.ld-search__clear svg {
+    width: 14px;
+    height: 14px;
+    display: block;
+}
+.ld-search__clear:hover {
+    color: var(--blue);
+    transform: rotate(90deg);
+}
+.ld-search__clear.is-visible {
+    display: flex;
+    align-items: center;
+    animation: fadeIn 0.15s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.7) rotate(45deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ──────────────────────────────────────────
+   BURGER MÓVIL
+────────────────────────────────────────── */
+.ld-burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    margin-left: auto;
+    z-index: 10;
+}
+.ld-burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    transition: transform 0.3s var(--ease-out), opacity 0.2s ease;
+    transform-origin: center;
+}
+.ld-burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.ld-burger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.ld-burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ──────────────────────────────────────────
+   RESPONSIVE — MÓVIL
+────────────────────────────────────────── */
+@media (max-width: 991px) {
+
+    body { padding-top: calc(var(--topbar-h) + var(--nav-height)); }
+
+    .ld-burger { display: flex; }
+
+    .ld-nav__menu {
+        position: fixed;
+        top: calc(var(--topbar-h) + var(--nav-height));
+        left: 0;
+        width: 100%;
+        height: calc(100vh - var(--topbar-h) - var(--nav-height));
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 16px 0 32px;
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.38s var(--ease-out);
+        gap: 0;
+    }
+    .ld-nav__menu.is-open {
+        transform: translateX(0);
+    }
+
+    .ld-nav__list {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .ld-nav__item {
+        height: auto;
+        flex-direction: column;
+        align-items: stretch;
+        border-bottom: 1px solid #f2f2f2;
+    }
+
+    .ld-nav__link {
+        height: auto;
+        padding: 14px 24px;
+        justify-content: space-between;
+    }
+    .ld-nav__link::after { display: none; }
+
+    /* Dropdown móvil: inline */
+    .ld-dropdown {
+        position: static;
+        border-top: none;
+        border-left: 3px solid var(--blue);
+        box-shadow: none;
+        background: #f8f9fb;
+        transform: none !important;
+        opacity: 1 !important;
+        pointer-events: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s var(--ease-out), padding 0.3s ease;
+        padding: 0;
+    }
+    .ld-nav__item.is-open .ld-dropdown {
+        max-height: 400px;
+        pointer-events: auto;
+        padding: 8px 0;
+        margin-left: 24px;
+    }
+
+    .ld-dropdown__inner {
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 16px;
+    }
+
+    .ld-search {
+        padding: 12px 24px;
+        width: 100%;
+    }
+    .ld-search__pill {
+        width: 100% !important;
+        border-color: #e0e0e0 !important;
+        background: #f8f9fb !important;
+        box-shadow: none !important;
+    }
+    .ld-search__pill:focus-within {
+        border-color: var(--blue) !important;
+        background: #fff !important;
+    }
+    .ld-search__input {
+        width: auto !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+}
+
+/* ── SOCIAL BUTTONS (footer) ── */
+.ld-social-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.22s var(--ease-out);
+}
+.ld-social-btn svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+.ld-social-btn:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-2px);
+}
+
+/* ── CONTACT BUTTON (footer) ── */
+.ld-contact-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.22s var(--ease-out);
+}
+.ld-contact-btn:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.06);
+    transform: translateY(-2px);
+}
+.ld-contact-btn__label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.85);
+    line-height: 1;
+}
+.ld-contact-btn__num {
+    display: block;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.4;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+}
+
+/* WhatsApp — hover verde */
+.ld-social-btn--whatsapp:hover {
+    color: #25d366 !important;
+    border-color: rgba(37, 211, 102, 0.4) !important;
+    background: rgba(37, 211, 102, 0.07) !important;
+}
